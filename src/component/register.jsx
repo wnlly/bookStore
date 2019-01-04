@@ -1,6 +1,7 @@
 import {
   Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete,
 } from 'antd';
+import PropTypes from 'prop-types'
 
 import React ,{Component}  from 'react';
 import axios from 'axios'
