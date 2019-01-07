@@ -37,6 +37,7 @@ class RegistrationForm extends React.Component {
   state = {
     confirmDirty: false,
     autoCompleteResult: [],
+    informationList:[]
   };
 
   handleSubmit = (e) => {
@@ -45,6 +46,26 @@ class RegistrationForm extends React.Component {
       if (!err) {
         console.log('Received values of form: ', values);
       }
+
+      let dd = values;
+      console.log(dd)
+      if(!dd) {
+        return ;
+      }
+       else{
+         this.setState({
+        informationList:dd
+      },()=>{
+        axios.post('http://localhost:5000/api',{
+          username:this.state.informationList
+        }).then(function(response){
+          console.log(response)
+        }).catch(function(error){
+          console.log(error)
+        })
+      })
+      
+    }
     });
   }
 
@@ -80,6 +101,9 @@ class RegistrationForm extends React.Component {
     this.setState({ autoCompleteResult });
   }
 
+  handleOnButtonOnClick(){
+
+  }
   render() {
     const { getFieldDecorator } = this.props.form;
     const { autoCompleteResult } = this.state;
@@ -118,6 +142,9 @@ class RegistrationForm extends React.Component {
     const websiteOptions = autoCompleteResult.map(website => (
       <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
     ));
+
+    console.log(this.state.autoCompleteResult);
+    console.log(this.props)
 
     return (
       <Form onSubmit={this.handleSubmit}>
