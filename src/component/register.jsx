@@ -1,5 +1,5 @@
 import {
-  Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete,
+  Form, Input, Tooltip, Icon,message, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete,
 } from 'antd';
 import PropTypes from 'prop-types'
 
@@ -34,6 +34,9 @@ const residences = [{
 }];
 
 class RegistrationForm extends React.Component {
+  constructor(props){
+    super(props);
+  }
   state = {
     confirmDirty: false,
     autoCompleteResult: [],
@@ -58,8 +61,12 @@ class RegistrationForm extends React.Component {
       },()=>{
         axios.post('http://localhost:5000/api',{
           username:this.state.informationList
-        }).then(function(response){
-          console.log(response)
+        }).then((response)=>{
+          
+          console.log(response);
+          message.success('注册成功',3)
+         this.props.history.push('/login');
+         
         }).catch(function(error){
           console.log(error)
         })
