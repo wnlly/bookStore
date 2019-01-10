@@ -20,7 +20,7 @@ class NormalLoginForm extends React.Component {
        },
       }).then(function(response){
         if(response);
-        this.props.history.push('/index');
+        // this.props.history.push('/index');
       })
     });
    
