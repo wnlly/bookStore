@@ -2,8 +2,9 @@ import  '../css/login.css'
  import React,{Component} from 'react'
 import {
 
-  Form, Icon, Input, Button, Checkbox,
+  Form, Icon, Input, Button, Checkbox,message
 } from 'antd';
+
 import axios from 'axios'
 
 class NormalLoginForm extends React.Component {
@@ -18,9 +19,13 @@ class NormalLoginForm extends React.Component {
          usernames:values.userName,
         passwords:values.password
        },
-      }).then(function(response){
-        if(response);
-        // this.props.history.push('/index');
+      }).then((response)=>{
+        let that = this;
+        if(response.data.message==='OK'){
+          message.success('登录成功',3);
+          this.props.history.push('/index');
+        }
+     
       })
     });
    
